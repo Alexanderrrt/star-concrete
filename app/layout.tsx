@@ -1,30 +1,50 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { headers } from "next/headers";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { company } from "@/lib/site-data";
 import "./globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://star-concrete.vercel.app";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
-  const imageUrl = `${protocol}://${host}/og.png`;
-  return {
-    title: "Star Quality Concrete | Bay Area Ready-Mix & Pumping",
-    description: "Quality ready-mix concrete, professional pumping and local dispatch for homeowners, contractors and commercial projects across the Bay Area.",
-    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
-    openGraph: {
-      title: "Star Quality Concrete",
-      description: "Concrete that shows up ready. Bay Area ready-mix and pumping since 1979.",
-      type: "website",
-      images: [{ url: imageUrl, width: 1732, height: 909, alt: "Star Quality Concrete ready-mix truck" }],
-    },
-    twitter: { card: "summary_large_image", title: "Star Quality Concrete", description: "Concrete that shows up ready.", images: [imageUrl] },
-  };
-}
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: { default: "Star Quality Concrete | Bay Area Ready-Mix & Pumping", template: "%s | Star Quality Concrete" },
+  description: company.description,
+  applicationName: company.name,
+  alternates: { canonical: "/" },
+  icons: { icon: "/media/logo.jpg", shortcut: "/media/logo.jpg" },
+  openGraph: { title: company.name, description: company.description, type: "website", siteName: company.name, url: "/", images: [{ url: "/og.png", width: 1732, height: 909, alt: "Star Quality Concrete ready-mix truck" }] },
+  twitter: { card: "summary_large_image", title: company.name, description: company.tagline, images: ["/og.png"] },
+};
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body></html>;
+  const localBusiness = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: company.name,
+    description: company.description,
+    foundingDate: String(company.founded),
+    telephone: company.mainPhone,
+    email: company.email,
+    address: { "@type": "PostalAddress", streetAddress: "1404 S 7th St", addressLocality: "San Jose", addressRegion: "CA", postalCode: "95112", addressCountry: "US" },
+    areaServed: ["San Jose", "Santa Clara County", "South County", "San Benito County"],
+    openingHours: "Mo-Fr 08:00-16:00",
+    url: siteUrl,
+    sameAs: [company.yelp],
+  };
+
+  return (
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <a className="skip-link" href="#main-content">Skip to main content</a>
+        <SiteHeader />
+        <main id="main-content">{children}</main>
+        <SiteFooter />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness).replace(/</g, "\\u003c") }} />
+      </body>
+    </html>
+  );
 }
