@@ -55,6 +55,9 @@ test("keeps business claims sourced, demos disclosed, and estimate delivery serv
   assert.match(estimateApi, /RESEND_API_KEY/);
   assert.match(estimateApi, /ESTIMATE_RECIPIENT/);
   assert.match(estimateApi, /reply_to/);
+  assert.match(estimateApi, /media\/logo\.jpg/);
+  assert.match(estimateApi, /Reply to customer/);
+  assert.match(estimateApi, /View map/);
 });
 
 test("has reusable services and localized area content", async () => {
