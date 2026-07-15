@@ -55,7 +55,7 @@ export default function HomePage() {
 
       <section className="process-section">
         <div className="process-intro"><p className="eyebrow light"><span></span>A clearer way to order</p><h2>From plan<br />to pour.</h2><p>Share the essentials once. The guided request turns them into a concise email brief for dispatch.</p><Link className="button button-light" href="/estimate">Start your estimate <span>→</span></Link></div>
-        <ol className="process-list"><li><span>01</span><div><h3>Define the project</h3><p>Choose the work type, approximate size or volume, and placement needs.</p></div></li><li><span>02</span><div><h3>Document the site</h3><p>Add the address, access constraints, and any helpful photo or plan names.</p></div></li><li><span>03</span><div><h3>Confirm timing</h3><p>Share the preferred date, flexibility, and planning budget.</p></div></li><li><span>04</span><div><h3>Send one clear brief</h3><p>Review the structured request, open it in your mail app, attach files, and send.</p></div></li></ol>
+        <ol className="process-list"><li><span>01</span><div><h3>Define the project</h3><p>Choose the work type, approximate size or volume, and placement needs.</p></div></li><li><span>02</span><div><h3>Document the site</h3><p>Add the address, access constraints, and optional site photos or plans.</p></div></li><li><span>03</span><div><h3>Confirm timing</h3><p>Share the preferred date, flexibility, and planning budget.</p></div></li><li><span>04</span><div><h3>Send one clear brief</h3><p>Review once and send the complete request directly to the Star team.</p></div></li></ol>
       </section>
 
       <section className="section home-about">

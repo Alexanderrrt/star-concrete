@@ -15,6 +15,7 @@ test("ships the required public and product surfaces", async () => {
     "app/service-areas/page.tsx",
     "app/service-areas/[slug]/page.tsx",
     "app/estimate/page.tsx",
+    "app/api/estimate/route.ts",
     "app/dashboard/page.tsx",
     "app/portal/page.tsx",
     "app/privacy/page.tsx",
@@ -37,19 +38,23 @@ test("uses the Vercel-native Next.js lifecycle", async () => {
   }
 });
 
-test("keeps business claims sourced and product demos disclosed", async () => {
-  const [home, dashboard, portal, estimate] = await Promise.all([
+test("keeps business claims sourced, demos disclosed, and estimate delivery server-side", async () => {
+  const [home, dashboard, portal, estimate, estimateApi] = await Promise.all([
     read("app/page.tsx"),
     read("components/workspace-demo.tsx"),
     read("components/portal-demo.tsx"),
     read("components/estimate-form.tsx"),
+    read("app/api/estimate/route.ts"),
   ]);
   assert.match(home, /Independent feedback/);
   assert.doesNotMatch(home, /\$184k|18% this month|Customer review/);
   assert.match(dashboard, /Sample data only/);
   assert.match(portal, /sample information only/i);
-  assert.match(estimate, /mailto:/);
-  assert.match(estimate, /attach.*email draft/i);
+  assert.doesNotMatch(estimate, /mailto:/);
+  assert.match(estimate, /\/api\/estimate/);
+  assert.match(estimateApi, /RESEND_API_KEY/);
+  assert.match(estimateApi, /ESTIMATE_RECIPIENT/);
+  assert.match(estimateApi, /reply_to/);
 });
 
 test("has reusable services and localized area content", async () => {
@@ -61,4 +66,3 @@ test("has reusable services and localized area content", async () => {
     assert.match(data, new RegExp(city));
   }
 });
-
