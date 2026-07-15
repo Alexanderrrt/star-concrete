@@ -12,7 +12,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans), "Segoe UI", sans-serif; font-optical-sizing: auto; }
 button, input, textarea, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; text-decoration: none; }
@@ -24,7 +24,7 @@ img { display: block; max-width: 100%; }
 
 .site-header { height: 86px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 4.4vw; border-bottom: 1px solid rgba(23,23,25,.18); background: rgba(250,249,246,.96); backdrop-filter: blur(14px); position: sticky; top: 0; z-index: 50; }
 .brand { display: inline-flex; align-items: center; gap: 11px; width: max-content; }
-.brand-mark { display: grid; place-items: center; width: 41px; height: 41px; color: var(--white); background: var(--wine); font-family: Georgia, serif; font-size: 27px; font-style: italic; font-weight: 700; border-radius: 50% 50% 45% 48%; }
+.brand-mark { display: grid; place-items: center; width: 41px; height: 41px; color: var(--white); background: var(--wine); font-family: var(--font-serif), Georgia, serif; font-size: 29px; font-style: italic; font-weight: 400; border-radius: 50% 50% 45% 48%; }
 .brand > span:last-child { display: flex; flex-direction: column; line-height: .9; }
 .brand strong { font-size: 22px; letter-spacing: .12em; }
 .brand small { font-size: 7px; letter-spacing: .16em; margin-top: 6px; }
@@ -58,7 +58,7 @@ img { display: block; max-width: 100%; }
 .hero { min-height: 720px; display: grid; grid-template-columns: 54% 46%; border-bottom: 1px solid var(--line); }
 .hero-copy { padding: 82px 6vw 55px 8vw; display: flex; flex-direction: column; justify-content: center; }
 .hero h1, .page-hero h1, .quality-copy h2, .process-intro h2, .home-locations h2, .closing-cta h2 { margin: 0; font-size: clamp(64px, 7.3vw, 116px); line-height: .85; letter-spacing: -.065em; font-weight: 800; }
-.hero h1 em, .page-hero h1 em { font-family: Georgia, serif; font-weight: 400; color: var(--wine); }
+.hero h1 em, .page-hero h1 em { font-family: var(--font-serif), Georgia, serif; font-weight: 400; color: var(--wine); }
 .hero-lede { max-width: 570px; margin: 38px 0 32px; color: #4e4d49; font-size: 17px; line-height: 1.65; }
 .hero-actions { display: flex; align-items: center; gap: 34px; }
 .hero-proof { margin-top: 68px; padding-top: 25px; border-top: 1px solid var(--line); display: flex; gap: 42px; }
@@ -341,7 +341,7 @@ img { display: block; max-width: 100%; }
 .workspace-tabs button.active { background: var(--ink); color: var(--white); }
 .workspace-window { min-height: 610px; display: grid; grid-template-columns: 190px 1fr; border: 1px solid #c9c5bc; border-radius: 0 0 6px 6px; overflow: hidden; background: #f7f6f2; box-shadow: 0 35px 80px rgba(29,25,20,.12); }
 .workspace-window > aside { background: #1e1e20; color: #8c8b87; padding: 25px 20px; display: flex; flex-direction: column; gap: 17px; font-size: 10px; }
-.mini-brand { width: 34px; height: 34px; margin-bottom: 18px; display: grid; place-items: center; background: var(--wine); color: var(--white); border-radius: 50%; font-family: Georgia,serif; font-size: 22px; font-style: italic; }
+.mini-brand { width: 34px; height: 34px; margin-bottom: 18px; display: grid; place-items: center; background: var(--wine); color: var(--white); border-radius: 50%; font-family: var(--font-serif), Georgia, serif; font-size: 24px; font-style: italic; }
 .workspace-window > aside > span { padding: 8px 10px; }
 .workspace-window > aside .side-active { background: #303033; color: var(--white); border-left: 2px solid var(--acid); }
 .workspace-window > aside small { margin-top: auto; font-size: 8px; line-height: 1.5; }
@@ -459,7 +459,7 @@ img { display: block; max-width: 100%; }
 .legal-copy a { color: var(--wine); text-decoration: underline; }
 .not-found { min-height: 720px; padding: 100px 8vw; display: flex; flex-direction: column; justify-content: center; }
 .not-found h1 { margin: 0; font-size: clamp(72px,10vw,150px); line-height: .78; letter-spacing: -.07em; }
-.not-found h1 em { color: var(--wine); font-family: Georgia,serif; font-weight: 400; }
+.not-found h1 em { color: var(--wine); font-family: var(--font-serif), Georgia, serif; font-weight: 400; }
 .not-found > p:not(.eyebrow) { color: var(--muted); line-height: 1.6; max-width: 520px; margin: 35px 0; }
 .not-found > div { display: flex; align-items: center; gap: 25px; }
 

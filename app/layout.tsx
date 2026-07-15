@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Instrument_Serif, Manrope } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { company } from "@/lib/site-data";
 import "./globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
+const manrope = Manrope({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://star-concrete.vercel.app";
 
 export const metadata: Metadata = {
@@ -38,7 +48,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${manrope.variable} ${instrumentSerif.variable}`}>
         <a className="skip-link" href="#main-content">Skip to main content</a>
         <SiteHeader />
         <main id="main-content">{children}</main>
